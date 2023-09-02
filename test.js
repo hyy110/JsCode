@@ -1,27 +1,16 @@
-let arr = [
-  { id: 1, name: "部门1", pid: 0 },
-  { id: 2, name: "部门2", pid: 1 },
-  { id: 3, name: "部门3", pid: 1 },
-  { id: 4, name: "部门4", pid: 3 },
-  { id: 5, name: "部门5", pid: 4 },
-  { id: 6, name: "部门6", pid: 0 },
-];
+function quick_sort(arr) {
+  if (arr.length <= 1) return arr;
 
-function getTreeList(rootList, id, list) {
-  for (let item of rootList) {
-    if (item.pid === id) {
-      list.push(item);
-    }
+  let temp = arr.splice(Math.floor(arr.length / 2), 1)[0];
+
+  let left = [], right = [];
+  for (let i = 0; i < arr.length; i ++) {
+      if (arr[i] < temp) left.push(arr[i]);
+      else right.push(arr[i]);
   }
 
-  for (const i of list) {
-    i.children = [];
-    getTreeList(rootList, i.id, i.children);
-    if (i.children.length === 0) delete i.children;
-  }
+  return [...quick_sort(left), temp, ...quick_sort(right)];
+} 
 
-  return list;
-}
-
-const res = getTreeList(arr, 0, []);
-console.log(res);
+let arr = [2, 3, 34, 54,5, 45,6, 23, 23];
+console.log(quick_sort(arr))

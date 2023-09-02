@@ -6,8 +6,8 @@ function render(vnode) {
   const { tag, attrs, children } = vnode;
   const dom = document.createElement(tag);
   if (attrs) {
-    Object.keys(attrs).forEach((item, index) => {
-      dom.setAttribute(index, item);
+    Object.entries(attrs).forEach((item) => {
+      dom.setAttribute(item[0], item[1]);
     });
   }
 

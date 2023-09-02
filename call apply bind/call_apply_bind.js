@@ -1,5 +1,5 @@
 Function.prototype.Mycall = function(context, ...args) {
-  context = (context === undefined || context === null) ? window : context;
+  context = (!context) ? window : context;
   context._fn = this;
   let result = context._fn(...args);
   delete context._fn;
@@ -7,15 +7,15 @@ Function.prototype.Mycall = function(context, ...args) {
 }
 
 Function.prototype.Myapply = function(context, args) {
-  context = (context === undefined || context === null) ? window : context;
+  context = (!context) ? window : context;
   context._fn = this;
   let result = context._fn(...args);
-  delete context._fn;
+  delete context._fn
   return result;
 }
 
 Function.prototype.Mybind = function(context, ...args) {
-  context = (context === undefined || context === null) ? window : context;
+  context = (!context) ? window : context;
   let _this = this;
   return function(...args2) {
     context._fn = _this;
