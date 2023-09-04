@@ -1,8 +1,9 @@
 function preOrder(root) {
   let res = [];
   let stk = [];
-  while (!root || stk.length) {
-    while (!root) {
+  
+  while (root || stk.length) {
+    while (root) {
       res.push(root);
       stk.push(root);
       root = root.left;
@@ -12,21 +13,21 @@ function preOrder(root) {
       root = root.right;
     }
   }
-
   return res;
 }
 
 function midOrder(root) {
   let res = [];
   let stk = [];
-  while (!root || stk.length) {
-    while (!root) {
+  while (root || stk.length) {
+    while (root) {
       stk.push(root);
       root = root.left;
     }
     if (stk.length) {
-      res.push(stk.pop());
-      root = root.right;
+      root = stk.pop();
+      res.push(root);
+      if (root.right) root = root.right;
     }
   }
 
